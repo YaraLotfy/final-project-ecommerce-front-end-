@@ -1,0 +1,45 @@
+<h2>Checkout</h2>
+
+<div *ngIf="orderPlaced">
+  <p>Thank you! Your order has been placed.</p>
+  <a routerLink="/products">Back to products</a>
+</div>
+
+<div *ngIf="!orderPlaced">
+  <h3>Order Summary</h3>
+
+  <ul>
+    <li *ngFor="let item of items">
+      {{ item.product.title }} x {{ item.quantity }}
+      — {{ item.product.price * item.quantity | currency }}
+    </li>
+  </ul>
+
+  <p>Total: <strong>{{ total | currency }}</strong></p>
+
+  <!-- Very simple fake checkout form -->
+  <h3>Shipping Details</h3>
+  <form (ngSubmit)="placeOrder()">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" required />
+    </div>
+
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" required />
+    </div>
+
+    <div class="form-group">
+      <label>City</label>
+      <input type="text" required />
+    </div>
+
+    <div class="form-group">
+      <label>Country</label>
+      <input type="text" required />
+    </div>
+
+    <button type="submit">Place Order</button>
+  </form>
+</div>

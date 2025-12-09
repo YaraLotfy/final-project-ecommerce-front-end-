@@ -1,0 +1,30 @@
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+.cart-table th,
+.cart-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.cart-summary {
+  text-align: right;
+}
+
+.cart-summary button {
+  padding: 8px 14px;
+}
+.cart-summary button:hover {
+  background-color: #0056b3;
+}
+.cart-summary button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}

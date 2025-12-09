@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <a routerLink="/products" class="logo">My Store</a>
+
+  <ul class="nav-links">
+    <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+    <li><a routerLink="/cart" routerLinkActive="active">
+      Cart ({{ cartCount }})
+    </a></li>
+
+    <ng-container *ngIf="!isLoggedIn; else loggedInLinks">
+      <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+    </ng-container>
+
+    <ng-template #loggedInLinks>
+      <li><button (click)="logout()" class="logout-btn">Logout</button></li>
+    </ng-template>
+  </ul>
+</nav>

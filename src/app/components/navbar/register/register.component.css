@@ -1,0 +1,5 @@
+@import url('../login/login.component.css');
+.redirect {
+  text-align: center;
+  margin-top: 15px;
+}
