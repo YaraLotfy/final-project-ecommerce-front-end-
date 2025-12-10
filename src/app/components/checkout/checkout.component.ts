@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { CartService } from '../../../service/cart';
-import { CartItem } from '../../../models/cart-item.model';
+import { CartService } from '../../service/cart';
+import { CartItem } from '../../models/cart-item.model';
 import { CurrencyPipe } from '@angular/common';
 import { Router } from '@angular/router';
 

@@ -6,15 +6,29 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly TOKEN_KEY = 'auth_token';
+  // 1) field initializer: NO hasToken() here
+  private loggedInSubject = new BehaviorSubject<boolean>(false);
+  TOKEN_KEY: string = 'auth-token';
 
-  private loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
+  // 2) constructor: uses hasToken()
+  constructor(private router: Router) {
+    if (this.hasToken()) {
+      this.loggedInSubject.next(true);
+    }
+  }
 
-  constructor(private router: Router) {}
+  // 3) hasToken and isBrowser
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+  }
 
   private hasToken(): boolean {
+    if (!this.isBrowser()) {
+      return false;
+    }
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
+
 
   isLoggedIn(): Observable<boolean> {
     return this.loggedInSubject.asObservable();
@@ -27,7 +41,9 @@ export class AuthService {
   // Fake login – in real app call HTTP API
   login(email: string, password: string): Observable<boolean> {
     if (email && password) {
-      localStorage.setItem(this.TOKEN_KEY, 'dummy-token');
+      if (this.isBrowser()) {
+        localStorage.setItem(this.TOKEN_KEY, 'dummy-token');
+      }
       this.loggedInSubject.next(true);
       return of(true);
     }
@@ -40,7 +56,9 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
+    if (this.isBrowser()) {
+      localStorage.removeItem(this.TOKEN_KEY);
+    }
     this.loggedInSubject.next(false);
     this.router.navigate(['/login']);
   }

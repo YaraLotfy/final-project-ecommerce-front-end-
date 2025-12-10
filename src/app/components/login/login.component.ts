@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 // Update the import path below to the correct location of your AuthService
 import { Inject } from '@angular/core';
 // Update the path below to the correct location of AuthService, for example:
-import { AuthService } from '../../../service/auth';
+import { AuthService } from '../../service/auth';
 import { FormsModule } from '@angular/forms';
 
 @Component({

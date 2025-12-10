@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ProductService } from '../../../service/product';
-import { CartService } from '../../../service/cart';
-import { Product } from '../../../models/product.model';
+import { ProductService } from '../../service/product';
+import { CartService } from '../../service/cart';
+import { Product } from '../../models/product.model';
 import { CurrencyPipe, NgForOf, NgIf, SlicePipe } from '@angular/common';
 
 @Component({

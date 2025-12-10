@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../../../service/auth';
+import { AuthService } from '../../service/auth';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -38,7 +38,7 @@ export class RegisterComponent {
     }
 
     this.authService.register(this.name, this.email, this.password)
-      .subscribe(success => {
+      .subscribe((success: any) => {
         if (success) {
           this.router.navigate(['/products']);
         } else {

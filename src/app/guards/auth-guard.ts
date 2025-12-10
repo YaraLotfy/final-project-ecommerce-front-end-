@@ -7,16 +7,14 @@ import { AuthService } from '../service/auth';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
-  canActivate(): boolean | UrlTree {
-    if (this.authService.isLoggedInSync()) {
+  canActivate(): boolean {
+    if (this.auth.isLoggedInSync()) {
       return true;
     }
-    // not logged in -> go to login
-    return this.router.parseUrl('/login');
+    this.router.navigate(['/login']);
+    return false;
   }
+
 }

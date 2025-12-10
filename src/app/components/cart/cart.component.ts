@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../../service/cart';
-import { CartItem } from '../../../models/cart-item.model';
-import { CurrencyPipe } from '@angular/common';
+import { CartService } from '../../service/cart';
+import { CartItem } from '../../models/cart-item.model';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  imports: [CurrencyPipe]
+  imports: [CurrencyPipe,CommonModule]
 })
 export class CartComponent implements OnInit {
   items: CartItem[] = [];
